@@ -1,0 +1,89 @@
+git安装后需要登陆用户，--global是针对全部的git目录使用该用户，也可以设置某一个git目录使用不同的用户
+ $ git config --global user.name "Your Name"
+ $ git config --global user.email "email@example.com"
+
+初始化
+ $ git init
+
+将文件增加到git仓库
+ $ git add 文件名
+
+将文件提交到仓库
+ $ git commit -m '提交的备注信息'
+
+查看文件的变更状态
+ $ git status
+
+查看文件的变更内容是那些
+ $ git diff 文件名
+
+git提交记录/简化版提交记录
+ $ git log/git log --pretty=oneline
+
+git回退版本，首先，Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100
+ $ git reset --hard HEAD^
+
+查看git每一次命令的执行记录
+ $ git reflog
+
+丢弃工作区的修改，恢复到暂存区或者分支的内容
+ $ git checkout -- 文件名
+
+取消暂存区内容，回到工作区
+ $ git reset HEAD 文件名
+
+删除git分支中的文件，删除后记得commit提交暂存区
+ $ git rm 文件名创建github关联密钥
+第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
+ $ ssh-keygen -t rsa -C '仓库当时登陆的邮箱'
+第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面
+然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容
+
+与github进行关联，因为本地没有建立git服务器，所以就是用github当作服务器，先创建github用户，然后创建一个远程repostory,然后在本地仓库进行如下代码关联
+ $ git remote add 远程库名 git@github.com:github账号/远程库名.git
+
+与github连接后就可以上传本地文件到远程仓库了,把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+ $git push -u 远程库名 master
+
+下载克隆github上面的项目
+ $git clone github仓地址 
+
+分支：
+  创建分支 $ git branch 分支名
+  切换分支 $ git checkout 分支名
+  创建并且切换分支 $ git checkout -b 分支名
+  指定分支与当前分支合并 $ git merge 分支名
+  删除分支 $ git branch -d 分支名
+
+  新版的git中:switch代替了checkout来切换分支，因为git checkout 分支名称和git checkout -- 文件名两个命令重叠的感觉。
+  创建并切换:$ git switch -c 分支名
+  切换分支：$ git switch 分支名
+  使用新的git switch命令，比git checkout要更容易理解。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
